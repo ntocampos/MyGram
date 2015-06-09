@@ -14,6 +14,7 @@
 			$data = $instagram->getOAuthToken($code);
 			$token = $data->access_token;
 			$_SESSION['access_token'] = $token;
+			$_SESSION['user'] = $data->user;
 
 			header('Location: index.php');
 		}

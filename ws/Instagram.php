@@ -512,7 +512,7 @@ class Instagram {
    */
   private function _signHeader() {
     $ipAddress = $_SERVER['SERVER_ADDR'];
-    $signature = hash_hmac('sha256', $ipAddress, $this->_apisecret, false);
+    $signature = hash_hmac('md5', $ipAddress, $this->_apisecret, false);
     return join('|', array($ipAddress, $signature));
   }
 
