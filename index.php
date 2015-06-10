@@ -19,14 +19,15 @@ else
 
 	<link rel="stylesheet" type="text/css" href="theme/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="theme/bootswatch.min.css">
-	<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
+	<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
 
 	<link rel="shortcut icon" type="image/ico" href="assets/favicon.ico"/>
 </head>
 
 <body>
-	<div class="navbar navbar-default navbar-fixed-top">
+	<!-- <div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<a href="../mygram" class="navbar-brand">mygram</a>
@@ -61,14 +62,12 @@ else
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<div id="wrapper">
-		<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
-			<i id="toggle-symbol" class="fa fa-chevron-left fa-lg pull-left"></i>
-		</a>
 		<!-- Sidebar -->
         <div id="sidebar-wrapper">
+        	<br><br>
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
@@ -76,30 +75,54 @@ else
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a href="#">
+                    	<i class="fa fa-dashcube fa-lg pull-left"></i>
+                    	Dashboard
+                    </a>
                 </li>
                 <li>
-                    <a href="#">Shortcuts</a>
+                    <a href="#">
+                    	<i class="fa fa-heartbeat fa-lg pull-left"></i>
+                    	Shortcuts
+                    </a>
                 </li>
                 <li>
-                    <a href="#">Overview</a>
+                    <a href="#">
+                    	<i class="fa fa-sellsy fa-lg pull-left"></i>
+                    	Overview
+                    </a>
                 </li>
                 <li>
-                    <a href="#">Events</a>
+                    <a href="#">
+                    	<i class="fa fa-server fa-lg pull-left"></i>
+                    	Events
+                    </a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a href="#">
+                    	<i class="fa fa-check-circle fa-lg pull-left"></i>
+                    	About
+                    </a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
+                    <a href="#">
+                    	<i class="fa fa-camera-retro fa-lg pull-left"></i>
+                    	Services
+                    </a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#">
+                    	<i class="fa fa-envelope-o fa-lg pull-left"></i>
+                    	Contact
+                    </a>
                 </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
 
+    	<a href="#menu-toggle" class="btn btn-default my-toggle-button" id="menu-toggle">
+			<i id="toggle-symbol" class="fa fa-chevron-left fa-lg"></i>
+		</a>
         <div id="page-content-wrapper">
         	<div class="container">
         		<div class="page-header" id="banner">
@@ -144,16 +167,20 @@ else
 
 
 	<script type="text/javascript" src="js/angular.min.1.4.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="theme/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	
-	<script type="text/javascript" src="theme/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 
 	<script>
+
+
 	$("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
-        document.getElementById('toggle-symbol').className = document.getElementById('toggle-symbol').getAttribute('class') == "fa fa-chevron-right fa-lg pull-left" ? "fa fa-chevron-left fa-lg pull-left" : "fa fa-chevron-right fa-lg pull-left";
+        document.getElementById('toggle-symbol').className = 
+        	document.getElementById('toggle-symbol').getAttribute('class') == "fa fa-chevron-right fa-lg" ? 
+        	"fa fa-chevron-left fa-lg" : "fa fa-chevron-right fa-lg";
     });
     </script>
 
