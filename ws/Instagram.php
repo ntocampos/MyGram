@@ -158,6 +158,10 @@ class Instagram {
     return $this->_makeCall('users/' . $id . '/media/recent', ($id === 'self'), array('count' => $limit));
   }
 
+  public function getUserMedia_mod($id = 'self', $limit = 0) {
+    return $this->_makeCall('users/' . $id . '/media/recent', true, array('count' => $limit));
+  }
+
   /**
    * Get the liked photos of a user
    *
@@ -558,7 +562,7 @@ class Instagram {
   /**
    * API Secret Setter
    *
-   * @param string $apiSecret 
+   * @param string $apiSecret
    * @return void
    */
   public function setApiSecret($apiSecret) {
@@ -573,7 +577,7 @@ class Instagram {
   public function getApiSecret() {
     return $this->_apisecret;
   }
-  
+
   /**
    * API Callback URL Setter
    *

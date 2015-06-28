@@ -1,9 +1,25 @@
 (function () {
-	var app = angular.module('myGram', []);
+	var app = angular.module('myGram', ['ngRoute']);
 
-	app.controller('MygramController', ['$http', function($http) {
-			this.name = 'Moises Neto';
-		}]);
+	// Configure routes
+	app.config(['$routeProvider', function($routeProvider) {
+		$routeProvider
+			.when('/', {
+				templateUrl: 'pages/recent-likes.html',
+				controller: 'LikeController'
+			})
+			.when('/recent', {
+				templateUrl: 'pages/recent-likes.html',
+				controller: 'LikeController'
+			})
+			.when('/relationship/', {
+				templateUrl:'pages/relationship.html',
+				controller: 'RelationshipController'
+			})
+			.otherwise({
+				redirectTo: '/'
+			});
+	}]);
 
 	app.controller('UserController', ['$http', function($http) {
 		var instagram = this;
@@ -21,4 +37,25 @@
 			instagram.likes = angular.fromJson(data.data);
 		});
 	}]);
+
+	// app.controller('UserPostController', ['$http', function($http) {
+	// 	$http.get('ws/get-user-posts.php?user_id')
+	// }]);
+
+
+
+	// Custom directives
+	app.directive('sidebar', function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'templates/sidebar.html'
+		};
+	});
+
+	// app.directive('recentLikes', function() {
+	// 	return {
+	// 		restrict: 'E',
+	// 		templateUrl: 'pages/recent-likes.html'
+	// 	};
+	// });
 })();
