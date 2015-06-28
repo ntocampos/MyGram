@@ -137,6 +137,12 @@ class Instagram {
     return $this->_makeCall('users/' . $id, $auth);
   }
 
+  public function getUser_mod($id = 0) {
+    $auth = false;
+    if ($id === 0 && isset($this->_accesstoken)) { $id = 'self'; $auth = true; }
+    return $this->_makeCall('users/' . $id, true);
+  }
+
   /**
    * Get user activity feed
    *

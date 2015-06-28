@@ -12,7 +12,7 @@
 				templateUrl: 'pages/recent-likes.html',
 				controller: 'LikeController'
 			})
-			.when('/relationship/', {
+			.when('/relationship/:user_id', {
 				templateUrl:'pages/relationship.html',
 				controller: 'RelationshipController'
 			})
@@ -20,7 +20,9 @@
 				redirectTo: '/'
 			});
 	}]);
+	// /Config
 
+	// Controllers
 	app.controller('UserController', ['$http', function($http) {
 		var instagram = this;
 		$http.get('ws/get-user-data.php')
@@ -38,10 +40,37 @@
 		});
 	}]);
 
-	// app.controller('UserPostController', ['$http', function($http) {
-	// 	$http.get('ws/get-user-posts.php?user_id')
-	// }]);
+	app.controller('RelationshipController', ['$http', '$routeParams', function($http, $routeParams) {
+		var user_id = $routeParams.user_id;
+		var instagram = this;
+		$http.get('ws/get-relationship.php?user_id=' + user_id)
+		.success(function(data) {
+			instagram.user_info = angular.fromJson(data.user.data);
+			instagram.relationship = angular.fromJson(data.relationship.data);
+			console.log(instagram.user_info.bio);
+		});
+	}]);
 
+	app.controller('LikedByMeController', ['$http', '$routeParams',
+	function($http, $routeParams) {
+		var user_id = $routeParams.user_id;
+		var instagram = this;
+		$http.get('ws/get-user-media-lbm.php?user_id=' + user_id)
+		.success(function(data) {
+			instagram.liked = angular.fromJson(data);
+		});
+	}]);
+
+	app.controller('LikedByThemController', ['$http', '$routeParams',
+	function($http, $routeParams) {
+		var user_id = $routeParams.user_id;
+		var instagram = this;
+		$http.get('ws/get-my-media-lbt.php?user_id=' + user_id)
+		.success(function(data) {
+			instagram.liked = angular.fromJson(data);
+		});
+	}]);
+	// /Controllers
 
 
 	// Custom directives
@@ -51,11 +80,4 @@
 			templateUrl: 'templates/sidebar.html'
 		};
 	});
-
-	// app.directive('recentLikes', function() {
-	// 	return {
-	// 		restrict: 'E',
-	// 		templateUrl: 'pages/recent-likes.html'
-	// 	};
-	// });
 })();

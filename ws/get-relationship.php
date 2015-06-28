@@ -10,15 +10,13 @@
 	$instagram->setAccessToken($token);
 	if (isset($_GET['user_id'])) {
 	  $user_id = $_GET['user_id'];
-    $posts = $instagram->getUserMedia_mod((string) $user_id, 1000);
-    if ($posts->meta->code == 200) {
-      $posts = $posts->data;
-      $liked = [];
-      foreach ($posts as $post)
-        if ($post->user_has_liked)
-          $liked[] = $post;
 
-      echo json_encode($liked);
-    }
+    $user_data = $instagram->getUser_mod($user_id);
+    $relationship = $instagram->getUserRelationship($user_id);
+
+    $return->user = $user_data;
+    $return->relationship = $relationship;
+
+    echo json_encode($return);
 	}
 ?>
