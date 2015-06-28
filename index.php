@@ -27,43 +27,6 @@ else
 </head>
 
 <body>
-	<!-- <div class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a href="../mygram" class="navbar-brand">mygram</a>
-				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="navbar-collapse collapse" id="navbar-main">
-				<ul class="nav navbar-nav">
-					<li>
-						<a href="../help/">Help</a>
-					</li>
-					<li>
-						<a href="http://news.bootswatch.com">Blog</a>
-					</li>
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Download <span class="caret"></span></a>
-						<ul class="dropdown-menu" aria-labelledby="download">
-							<li><a href="#">Android</a></li>
-							<li class="divider"></li>
-							<li><a href="#">iOS</a></li>
-							<li><a href="#">Windows Phone</a></li>
-						</ul>
-					</li>
-				</ul>
-
-				<ul class="nav navbar-nav navbar-right" ng-controller="UserController as user">
-					<li><a href="index.php">Hello, <b>{{user.user.username}}</b>!</a></li>
-					<li><a href="logout.php" title="Log out">logout</a></li>
-				</ul>
-			</div>
-		</div>
-	</div> -->
-
 	<div id="wrapper">
 		<!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -120,9 +83,9 @@ else
         </div>
         <!-- /#sidebar-wrapper -->
 
-    	<a href="#menu-toggle" class="btn btn-default my-toggle-button" id="menu-toggle">
+    	<button type="button" class="btn btn-default my-toggle-button" id="menu-toggle" style="outline: none;">
 			<i id="toggle-symbol" class="fa fa-chevron-left fa-lg"></i>
-		</a>
+		</button>
         <div id="page-content-wrapper">
         	<div class="container">
         		<div class="page-header" id="banner">
@@ -183,44 +146,5 @@ else
         	"fa fa-chevron-left fa-lg" : "fa fa-chevron-right fa-lg";
     });
     </script>
-
-<!-- 	<div class="container">
-		<div class="page-header" id="banner">
-			<div class="row">
-				<div class="col-lg-8 col-md-7 col-sm-6">
-					<h1>mygram</h1>
-					<p class="lead">A plus+ to your <u>Instagram</u>&trade;</p>
-				</div>
-				<div class="col-lg-4 col-md-5 col-sm-6">
-					<div class="sponsor">
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="page-header">
-					<h1 id="navbar">recent likes</h1>
-				</div>
-			</div>
-		</div>
-		<div class="row" ng-controller="LikeController as userLikes">
-			<div class="col-lg-4" ng-repeat="like in userLikes.likes" align="center">
-				<div class="panel panel-default" style="max-width: 360px">
-					<div class="panel-body">
-						<a href="{{like.link}}">
-						<img ng-src="{{like.images.low_resolution.url}}" alt="{{like.caption.from.username}}">
-						</a>
-					</div>
-					<div class="panel-footer" style="max-height:85px; min-height: 85px">
-						<div id="description-text" ng-show="like.caption.text">{{like.caption.text | limitTo: 85}}{{like.caption.text.length > 85 ? '...' : ''}}, </div>
-						<div>by <a href="http://instagram.com/{{like.user.username}}"><b>{{like.user.username}}</b></a></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
 </body>
 </html>
