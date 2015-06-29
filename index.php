@@ -42,7 +42,7 @@
 
 
 	<script type="text/javascript" src="js/angular.min.1.4.js"></script>
-	<script type="text/javascript" src="js/angular-route.js"></script>	
+	<script type="text/javascript" src="js/angular-route.js"></script>
 	<script type="text/javascript" src="theme/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
 

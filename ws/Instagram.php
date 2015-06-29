@@ -185,7 +185,10 @@ class Instagram {
    * @param integer [optional] $limit     Limit of returned results
    * @return mixed
    */
-  public function getUserFollows($id = 'self', $limit = 0) {
+  public function getUserFollows($id = 'self', $limit = 0, $next_cursor = null) {
+    if (isset($next_cursor))
+      return $this->_makeCall('users/' . $id . '/follows', true, array('count' => $limit, 'cursor' => $next_cursor));
+
     return $this->_makeCall('users/' . $id . '/follows', true, array('count' => $limit));
   }
 

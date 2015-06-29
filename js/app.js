@@ -40,6 +40,18 @@
 		});
 	}]);
 
+	app.controller('TabController', function() {
+		var tab = 1;
+
+		this.selectTab = function(setTab) {
+			this.tab = setTab;
+		};
+
+		this.isSelected = function(checkTab) {
+			return this.tab === checkTab;
+		};
+	});
+
 	app.controller('RelationshipController', ['$http', '$routeParams', function($http, $routeParams) {
 		var user_id = $routeParams.user_id;
 		var instagram = this;
@@ -47,7 +59,6 @@
 		.success(function(data) {
 			instagram.user_info = angular.fromJson(data.user.data);
 			instagram.relationship = angular.fromJson(data.relationship.data);
-			console.log(instagram.user_info.bio);
 		});
 	}]);
 

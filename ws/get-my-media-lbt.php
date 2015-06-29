@@ -10,7 +10,7 @@
   $instagram->setAccessToken($token);
   if (isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
-    $posts = $instagram->getUserMedia('self', 10000);
+    $posts = $instagram->getUserMedia('self', 50);
     if ($posts->meta->code == 200) {
       $posts = $posts->data;
       $liked = [];

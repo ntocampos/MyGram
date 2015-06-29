@@ -10,13 +10,13 @@
 	$instagram->setAccessToken($token);
 	if (isset($_GET['user_id'])) {
 	  $user_id = $_GET['user_id'];
-    $posts = $instagram->getUserMedia_mod((string) $user_id, 1000);
+    $posts = $instagram->getUserMedia_mod((string) $user_id, 50);
     if ($posts->meta->code == 200) {
       $posts = $posts->data;
       $liked = [];
       foreach ($posts as $post)
         if ($post->user_has_liked)
-          $liked[] = $post;
+          $liked [] = $post;
 
       echo json_encode($liked);
     }

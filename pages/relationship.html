@@ -27,24 +27,51 @@
   </div>
 </div>
 <br><br>
-<div class="row">
-  <ul class="nav nav-tabs">
-    <li class="active"><a aria-expanded="true" href="#home" data-toggle="tab">Home</a></li>
-    <li class=""><a aria-expanded="false" href="#profile" data-toggle="tab">Profile</a></li>
-    <li class="disabled"><a>Disabled</a></li>
+<div class="row"  ng-controller="TabController as tabs">
+  <ul class="nav nav-pills nav-justified">
+    <li ng-class="{ active: tabs.isSelected(1) }">
+      <a href ng-click="tabs.selectTab(1)" style="outline: none; margin-bottom: 50px;">Photos of this person liked by me</a>
+    </li>
+    <li ng-class="{ active: tabs.isSelected(2) }">
+      <a href ng-click="tabs.selectTab(2)" style="outline: none; margin-bottom: 50px;">Photos of me liked by this person</a>
+    </li>
   </ul>
   <div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade active in" id="home">
-      <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+    <div id="home" ng-show="tabs.isSelected(1)">
+      <div class="row" ng-controller="LikedByMeController as lbm">
+        <div class="col-lg-12" ng-repeat="like in lbm.liked" align="center">
+          <div class="panel panel-default" style="max-width: 680px">
+            <div class="panel-body">
+              <a href="{{like.link}}" target="blank">
+              <img ng-src="{{like.images.standard_resolution.url}}" alt="{{like.caption.from.username}}">
+              </a>
+            </div>
+            <div class="panel-footer">
+              <div id="description-text" ng-show="like.caption.text">
+                {{like.caption.text}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="tab-pane fade" id="profile">
-      <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
-    </div>
-    <div class="tab-pane fade" id="dropdown1">
-      <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
-    </div>
-    <div class="tab-pane fade" id="dropdown2">
-      <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+    <div id="profile" ng-show="tabs.isSelected(2)">
+      <div class="row" ng-controller="LikedByThemController as lbt">
+        <div class="col-lg-12" ng-repeat="like in lbt.liked" align="center">
+          <div class="panel panel-default" style="max-width: 680px">
+            <div class="panel-body">
+              <a href="{{like.link}}" target="blank">
+              <img ng-src="{{like.images.standard_resolution.url}}" alt="{{like.caption.from.username}}">
+              </a>
+            </div>
+            <div class="panel-footer">
+              <div id="description-text" ng-show="like.caption.text">
+                {{like.caption.text}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
