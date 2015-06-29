@@ -6,11 +6,13 @@
 		$routeProvider
 			.when('/', {
 				templateUrl: 'pages/recent-likes.html',
-				controller: 'LikeController'
+				controller: 'LikeController',
+				controllerAs: 'userLikes'
 			})
 			.when('/recent', {
 				templateUrl: 'pages/recent-likes.html',
-				controller: 'LikeController'
+				controller: 'LikeController',
+				controllerAs: 'userLikes'
 			})
 			.when('/relationship/:user_id', {
 				templateUrl:'pages/relationship.html',
@@ -29,7 +31,8 @@
 	// /Routes
 
 	// Controllers
-	app.controller('UserController', ['$http', function($http) {
+	app.controller('UserController', ['$http', '$location', function($http, $location) {
+		this.location = $location;
 		var instagram = this;
 		$http.get('ws/get-user-data.php')
 		.success(function(data) {
@@ -37,7 +40,8 @@
 		});
 	}]);
 
-	app.controller('LikeController', ['$http', function($http) {
+	app.controller('LikeController', ['$http', '$location', function($http, $location) {
+		this.location = $location;
 		var instagram = this;
 		instagram.likes = [];
 		$http.get('ws/get-user-likes.php?q=50')
@@ -58,7 +62,8 @@
 		};
 	});
 
-	app.controller('RelationshipController', ['$http', '$routeParams', function($http, $routeParams) {
+	app.controller('RelationshipController', ['$http', '$routeParams', '$location', function($http, $routeParams, $location) {
+		this.location = $location;
 		var user_id = $routeParams.user_id;
 		var instagram = this;
 		$http.get('ws/get-relationship.php?user_id=' + user_id)
@@ -68,8 +73,9 @@
 		});
 	}]);
 
-	app.controller('LikedByMeController', ['$http', '$routeParams',
-	function($http, $routeParams) {
+	app.controller('LikedByMeController', ['$http', '$routeParams', '$location',
+	function($http, $routeParams, $location) {
+		this.location = $location;
 		var user_id = $routeParams.user_id;
 		var instagram = this;
 		$http.get('ws/get-user-media-lbm.php?user_id=' + user_id)
@@ -78,8 +84,9 @@
 		});
 	}]);
 
-	app.controller('LikedByThemController', ['$http', '$routeParams',
-	function($http, $routeParams) {
+	app.controller('LikedByThemController', ['$http', '$routeParams', '$location',
+	function($http, $routeParams, $location) {
+		this.location = $location;
 		var user_id = $routeParams.user_id;
 		var instagram = this;
 		$http.get('ws/get-my-media-lbt.php?user_id=' + user_id)
@@ -88,8 +95,10 @@
 		});
 	}]);
 
-	app.controller('FollowerController', ['$http', '$routeParams',
-	function($http, $routeParams) {
+	app.controller('FollowerController', ['$http', '$routeParams', '$location',
+	function($http, $routeParams, $location) {
+		this.location = $location;
+		console.log(this.location.path());
 		var instagram = this;
 		$http.get('ws/get-followers.php')
 		.success(function(data) {
