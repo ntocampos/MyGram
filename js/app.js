@@ -1,5 +1,5 @@
 (function () {
-	var app = angular.module('myGram', ['ngRoute']);
+	var app = angular.module('myGram', ['ngRoute', 'angular-loading-bar']);
 
 	// Configure routes
 	app.config(['$routeProvider', function($routeProvider) {

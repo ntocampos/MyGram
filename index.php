@@ -24,6 +24,8 @@
 	<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
 
 	<link rel="shortcut icon" type="image/ico" href="assets/favicon.ico"/>
+
+	<link rel='stylesheet' href='css/loading-bar.css' type='text/css' media='all'
 </head>
 
 <body>
@@ -45,6 +47,7 @@
 	<script type="text/javascript" src="js/angular-route.js"></script>
 	<script type="text/javascript" src="theme/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type='text/javascript' src='js/loading-bar.js'></script>
 
 	<script type="text/javascript" src="js/app.js"></script>
 
