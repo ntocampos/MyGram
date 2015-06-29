@@ -14,13 +14,19 @@
 			})
 			.when('/relationship/:user_id', {
 				templateUrl:'pages/relationship.html',
-				controller: 'RelationshipController'
+				controller: 'RelationshipController',
+				controllerAs: 'relationship'
+			})
+			.when('/followers', {
+				templateUrl:'pages/followers.html',
+				controller: 'FollowerController',
+				controllerAs: 'followers'
 			})
 			.otherwise({
 				redirectTo: '/'
 			});
 	}]);
-	// /Config
+	// /Routes
 
 	// Controllers
 	app.controller('UserController', ['$http', function($http) {
@@ -79,6 +85,15 @@
 		$http.get('ws/get-my-media-lbt.php?user_id=' + user_id)
 		.success(function(data) {
 			instagram.liked = angular.fromJson(data);
+		});
+	}]);
+
+	app.controller('FollowerController', ['$http', '$routeParams',
+	function($http, $routeParams) {
+		var instagram = this;
+		$http.get('ws/get-followers.php')
+		.success(function(data) {
+			instagram.followers = data.data;
 		});
 	}]);
 	// /Controllers
