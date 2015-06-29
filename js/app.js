@@ -30,6 +30,10 @@
 	}]);
 	// /Routes
 
+	app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
+  }])
+
 	// Controllers
 	app.controller('UserController', ['$http', '$location', function($http, $location) {
 		this.location = $location;
