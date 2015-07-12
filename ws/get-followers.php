@@ -13,7 +13,11 @@
 
   $cursor = isset($_GET['cursor']) ? $_GET['cursor'] : null;
 
-  $followers = $instagram->getUserFollower($user_id, 91, $cursor);
+  $followers = $instagram->getUserFollower($user_id, 92, $cursor);
 
-  echo json_encode($followers);
+  $test = $instagram->getUserFollower(328108954, 92, 1365871293857);
+  //2055047480
+  echo count($test->data);
+  echo json_encode($test);
+  //echo json_encode($followers);
 ?>

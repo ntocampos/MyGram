@@ -1,5 +1,6 @@
-<?php 
+<?php
 	require_once('Instagram.php');
+	require_once('connection.php');
 	use MetzWeb\Instagram\Instagram;
 
 	$instagram = new Instagram(array(
