@@ -31,7 +31,8 @@
 <body>
 	<div id="wrapper">
 		<sidebar></sidebar>
-  	<button type="button" class="btn btn-default my-toggle-button" id="menu-toggle" style="outline: none;">
+  	<button type="button" class="btn btn-default my-toggle-button" id="menu-toggle"
+			style="outline: none; border-radius: 0px; box-shadow: none;">
 			<i id="toggle-symbol" class="fa fa-chevron-left fa-lg"></i>
 		</button>
 
