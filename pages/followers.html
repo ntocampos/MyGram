@@ -11,7 +11,7 @@
     <div ng-repeat="follower in followers.followers" >
       <a href="#/relationship/{{follower.id}}" class="list-group-item vcenter col-lg-6" style="border: 0px; min-height: 90px;">
         <img class="pull-left img-circle" src="{{follower.profile_picture}}" alt="{{follower.username}}" width="70px" height="70px" style=" margin-left:20px; margin-right: 20px;"/>
-        <h4 class="list-group-item-heading"><b>@{{follower.username}}</b></h4>
+        <h4 class="list-group-item-heading"><strong>@{{follower.username}}</strong></h4>
         <p class="list-group-item-text">{{follower.full_name}}</p>
       </a>
     </div>
