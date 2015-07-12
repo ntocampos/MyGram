@@ -1,5 +1,5 @@
 <?php
-  // Get user (user_id) media liked by me
+  // Get user (user_id) media liked by mee
 	session_start();
 	require_once('config.php');
 
