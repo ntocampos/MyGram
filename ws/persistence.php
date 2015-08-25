@@ -20,10 +20,10 @@
 
     if ($user->meta->code == '200') {
       $user = $user->data;
-      $values = $user->id . ', "' . $user->username . '", "' . $user->bio . '", "' . $user->website . '", "' . $user->profile_picture . '",
-               "' . $user->full_name .'", ' . $user->counts->media . ', ' . $user->counts->followed_by . ', ' . $user->counts->follows;
-      $query = 'INSERT INTO user (id, username, bio, website, profile_picture, full_name, media, followed_by, follows)' .
-                'VALUES  (' . $values . ')';
+      $values = $user->id . ', "' . $user->username . '", "' . $user->profile_picture . '", "' . $user->full_name .'"';
+      $query =  'INSERT INTO user (id, username, profile_picture, full_name)' .
+                'VALUES  (' . $values . ')' .
+                'ON DUPLICATE KEY UPDATE username = "'.$user->username.'", profile_picture = "'.$user->profile_picture.'", full_name = "'.$user->full_name.'"';
 
       mysqli_query($connection, $query);
     }
@@ -33,18 +33,30 @@
     global $instagram, $connection;
 
     $next_cursor = null;
-    $values = '';
+    $values_relation = '';
+    $values_user = '';
     do {
       $followers = $instagram->getUserFollower($user_id, 92, $next_cursor);
       $next_cursor = isset($followers->pagination->next_cursor) ? $followers->pagination->next_cursor : null;
 
       foreach ($followers->data as $follower) {
-        $values .= '(' . $user_id . ', ' . $follower->id . '),';
+        $values_relation .= '("'.$user_id.'", "'.$follower->id.'"),';
+        $values_user .= '("'.$follower->id.'", "'.$follower->username.'", "'.$follower->profile_picture.'", "'.$follower->full_name.'"),';
       }
     } while ($next_cursor);
 
-    $values = rtrim($values, ',');
-    $query = 'INSERT INTO relation (user_id, followed_by) VALUES ' . $values;
-    mysqli_query($connection, $query);
+    $values_relation = rtrim($values_relation, ',');
+
+    // ?Antes do delete, salvar em outro canto para comparação futura
+    $delete = "DELETE FROM relation WHERE user_id = ".$user_id;
+    mysqli_query($connection, $delete);
+
+    $query_relation = 'INSERT INTO relation (user_id, followed_by) VALUES' . $values_relation;
+    $query_user =   'INSERT INTO user (id, username, profile_picture, full_name) VALUES '.trim($values_user, ',').' ' .
+                    'ON DUPLICATE KEY UPDATE username = VALUES(username), profile_picture = VALUES(profile_picture), full_name = VALUES(full_name)';
+    echo $query_user;
+
+    mysqli_query($connection, $query_relation);
+    mysqli_query($connection, $query_user);
   }
 ?>
