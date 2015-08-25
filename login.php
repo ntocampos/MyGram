@@ -15,6 +15,7 @@
 			$token = $data->access_token;
 			$_SESSION['access_token'] = $token;
 			$_SESSION['user'] = $data->user;
+			echo "<script>console.log('AQUI!');</script>";
 
 			header('Location: index.php');
 		}
