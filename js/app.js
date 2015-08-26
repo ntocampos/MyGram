@@ -106,6 +106,7 @@
 		var instagram = this;
 		$http.get('ws/get-followers.php')
 		.success(function(data) {
+			console.log(data);
 			instagram.followers = data.data;
 		});
 	}]);
