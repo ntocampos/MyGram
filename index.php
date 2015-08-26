@@ -22,6 +22,8 @@
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 
 	<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+
 
 	<link rel="shortcut icon" type="image/ico" href="assets/favicon.ico"/>
 

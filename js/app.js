@@ -24,6 +24,11 @@
 				controller: 'FollowerController',
 				controllerAs: 'followers'
 			})
+			.when('/feed', {
+				templateUrl: 'pages/feed.html',
+				controller: 'FeedController',
+				controllerAs: 'feed'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});
@@ -106,10 +111,22 @@
 		var instagram = this;
 		$http.get('ws/get-followers.php')
 		.success(function(data) {
-			console.log(data);
 			instagram.followers = data.data;
 		});
 	}]);
+
+	app.controller('FeedController', ['$http', '$routeParams', '$location',
+	function($http, $routeParams, $location) {
+		this.location = $location;
+		console.log(this.location.path());
+		var instagram = this;
+		$http.get('ws/get-feed.php')
+		.success(function(data) {
+			instagram.feed = data.data;
+			instagram.next_max_id = data.pagination.next_max_id;
+			console.log(instagram.feed);
+		});
+	}])
 	// /Controllers
 
 

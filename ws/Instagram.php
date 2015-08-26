@@ -153,6 +153,10 @@ class Instagram {
     return $this->_makeCall('users/self/feed', true, array('count' => $limit));
   }
 
+  public function getFeed($limit = 0, $max_id = '') {
+    return $this->_makeCall('users/self/feed', true, array('count' => $limit, 'max_id' => $max_id));
+  }
+
   /**
    * Get user recent media
    *

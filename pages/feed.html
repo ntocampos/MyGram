@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="page-header">
+      <h1 id="navbar">media feed</h1>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-lg-12" ng-repeat="media in feed.feed" align="center">
+    <div class="panel panel-default" style="max-width: 640px;">
+      <div class="panel-body">
+        <a href="{{media.link}}" target="blank">
+          <div class="reveal">
+            <img ng-src="{{media.images.standard_resolution.url}}" alt="{{media.caption.from.username}}">
+            <div class="hidden">
+              <div class="caption">
+                <div class="centered">
+                  <p><i class="fa fa-heart"></i> {{media.likes.count}}</p>
+                  <p><i class="fa fa-comment"></i> {{media.comments.count}}</p>
+                  <p><span class="label label-info">{{media.filter}}</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="panel-footer" style="max-height:85px; min-height: 85px">
+        <div id="description-text" ng-show="media.caption.text">
+          {{media.caption.text | limitTo: 85}}{{media.caption.text.length > 85 ? '...' : ''}},
+          </div>
+        <div>by <a href="http://instagram.com/{{media.user.username}}">
+          <b>{{media.user.username}}</b></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
